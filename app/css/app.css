@@ -1,0 +1,67 @@
+table.sudoku {
+  border: 3px solid black;
+  border-collapse: collapse;
+  cursor: pointer;
+  table-layout:fixed;
+}
+tr {
+  margin: 0;
+  border-top: 1px dotted black;
+  cursor: inherit;
+}
+td.selected {
+  background: rgba(84, 84, 84, 0.2);
+}
+.selected {
+  background: rgba(255, 255, 100, 0.75);
+}
+.controls {
+  margin-top: 20px;
+}
+.row-div {
+  border-top: 3px solid;
+  border-color: inherit;
+}
+.col-div {
+  border-left: 3px solid;
+  border-color: inherit;
+}
+.domain {
+  color: gray;
+  font-size: 10px;
+}
+td.cell {
+  white-space: nowrap;
+  margin: 0;
+  outline: 0;
+  border-left: 1px dotted black;
+  cursor: inherit;
+  min-height: 45px;
+  height: 45px;
+  max-height: 45px;
+  min-width: 45px;
+  width: 45px;
+  max-width: 45px;
+  text-align:center;
+  vertical-align:middle;
+  font-size: 25px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+.broken {
+  background: rgba(255, 100, 100, 0.5);
+}
+.single {
+  background: rgba(200, 200, 255, 0.5);
+}
+.invalid {
+  color: red;
+}
+.locked {
+  color: #000080;
+  font-weight: bold;
+}

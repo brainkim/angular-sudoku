@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sudoku</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body ng-app="sudoku">
+<div class="container" ng-controller="SudokuController">
+  <table class="sudoku">
+    <colgroup >
+      <col ng-repeat="col in domain"
+      ng-class=
+      "{'col-div':$index % colDiv == 0,
+        selected :$index == selectedCol}"
+      >
+      </col>
+    </colgroup>
+    <tr ng-repeat="row in rows" ng-class=
+      "{'row-div':$index % rowDiv == 0,
+      selected:$index == selectedRow}"
+    >
+      <td
+        cell
+        class="cell"
+        ng-repeat="cellIndex in row"
+        ng-focus="highlight(cellIndex)"
+        ng-blur="unhighlight()"
+        ng-class=
+        "{invalid:!grid.validAt(cellIndex),
+          broken:grid.brokenAt(cellIndex),
+          locked:grid.lockedAt(cellIndex)}"
+        tabindex="0"
+        ng-switch="grid.get(cellIndex)"
+      >
+      <span ng-switch-when="null" class="domain">{{grid.getDomainLength(cellIndex)}}</span>
+      <span ng-switch-default>{{grid.get(cellIndex)|value:domain}}</span>
+      </td>
+    </tr>
+  </table>
+  <div class="controls">
+    <form>
+      <button ng-click="solver.solve(grid)">Solve</button>
+      <button ng-click="nextPuzzle()">New Puzzle</button>
+      <button ng-click="getAverage()">Get Average</button>
+    </form>
+    <form ng-submit="parser.parse(str, grid)" class="form-horizontal">
+      <input type="text" ng-model="str" placeholder="Create sudoku from string" size="30">
+      <input type="submit" value="Create">
+    </form>
+  </div>
+</div>
+<script src="lib/lodash/lodash.underscore.js"></script>
+<script src="lib/bitmask/bitmask.js"></script>
+<script src="lib/underscore/underscore-extensions.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/SudokuController.js"></script>
+<script src="js/models/Sudoku.js"></script>
+<script src="js/services/Solver.js"></script>
+<script src="js/services/Parser.js"></script>
+<script src="js/filters/filters.js"></script>
+<script src="js/directives/directives.js"></script>
+</body>
+</html>
